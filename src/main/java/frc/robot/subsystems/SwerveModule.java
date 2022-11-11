@@ -7,6 +7,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 
 
@@ -15,15 +16,17 @@ public class SwerveModule {
     TalonFX rotation;
     TalonFX drive;
 
-    
+    double ANGLECONSTANT = 2048/360.0;
+    double SPEEDCONSTANT = 2533.109;
 
     public void setSpeed(double speed){
-        drive.set(ControlMode.Velocity, speed*2533.109);
+        drive.set(ControlMode.Velocity, speed*SPEEDCONSTANT);
         
     }
 
-    public void setRotation(double angle){
-        rotation.set(ControlMode.Position, angle);
+    public void setRotation(Rotation2d angle){
+        
+        rotation.set(ControlMode.Position, angle.getDegrees() * ANGLECONSTANT);
         
         
     }

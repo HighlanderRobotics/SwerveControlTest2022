@@ -30,10 +30,10 @@ public class SwerveDrive extends SubsystemBase {
   Translation2d m_backLeftLocation = new Translation2d(-0.381, 0.381);
   Translation2d m_backRightLocation = new Translation2d(-0.381, -0.381);
 
-  SwerveModuleState moduleA;
-  SwerveModuleState moduleB;
-  SwerveModuleState moduleC;
-  SwerveModuleState moduleD;
+  SwerveModule moduleA = new SwerveModule();
+  SwerveModule moduleB = new SwerveModule();
+  SwerveModule moduleC = new SwerveModule();
+  SwerveModule moduleD = new SwerveModule();
 
   private final SwerveDriveKinematics m_kinematics = new SwerveDriveKinematics(
   m_frontLeftLocation, m_frontRightLocation, m_backLeftLocation, m_backRightLocation
@@ -43,18 +43,18 @@ public class SwerveDrive extends SubsystemBase {
     
   }
   void drive(double xspeed, double yspeed, double rotation){
-      ChassisSpeeds  speeds = new ChassisSpeeds(xspeed, yspeed, rotation);
+      ChassisSpeeds speeds = new ChassisSpeeds(xspeed, yspeed, rotation);
       
       
       SwerveModuleState[] moduleStates = m_kinematics.toSwerveModuleStates(speeds, angle);
       moduleA.setSpeed(moduleStates[0].speedMetersPerSecond);
       moduleB.setSpeed(moduleStates[1].speedMetersPerSecond);
       moduleC.setSpeed(moduleStates[2].speedMetersPerSecond);
-      moduleD.setState(moduleStates[3].speedMetersPerSecond);
-      moduleA.setRotation(moduleStates[0].);
-      moduleB.setRotation(moduleStates[1].speedMetersPerSecond);
-      moduleC.setRotation(moduleStates[2].speedMetersPerSecond);
-      moduleD.setRotation(moduleStates[3].speedMetersPerSecond);
+      moduleD.setSpeed(moduleStates[3].speedMetersPerSecond);
+      moduleA.setRotation(moduleStates[0].angle);
+      moduleB.setRotation(moduleStates[1].angle);
+      moduleC.setRotation(moduleStates[2].angle);
+      moduleD.setRotation(moduleStates[3].angle);
 
       
       
@@ -65,8 +65,8 @@ public class SwerveDrive extends SubsystemBase {
   }
 
 
-  //void driveLeft(double speedInMetersPerSecond) {
-    ChasisSpeed cs = new ChasisSpeeds(-Math.abs(speedInMetersPerSecond), 0, 0);
+  void driveLeft(double speedInMetersPerSecond) {
+    ChassisSpeed cs = new ChassisSpeeds(-Math.abs(speedInMetersPerSecond), 0, 0);
     m_kinematics.toSwerveModuleStates(cs);
   }
 
