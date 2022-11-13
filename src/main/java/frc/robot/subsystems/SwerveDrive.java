@@ -30,10 +30,10 @@ public class SwerveDrive extends SubsystemBase {
   Translation2d m_backLeftLocation = new Translation2d(-0.381, 0.381);
   Translation2d m_backRightLocation = new Translation2d(-0.381, -0.381);
 
-  SwerveModule moduleA = new SwerveModule();
-  SwerveModule moduleB = new SwerveModule();
-  SwerveModule moduleC = new SwerveModule();
-  SwerveModule moduleD = new SwerveModule();
+  SwerveModule fLModule = new SwerveModule(1, 2);
+  SwerveModule fRModule = new SwerveModule(5, 6);
+  SwerveModule bLModule = new SwerveModule(3, 4); 
+  SwerveModule bRModule = new SwerveModule(7, 8);
 
   private final SwerveDriveKinematics m_kinematics = new SwerveDriveKinematics(
   m_frontLeftLocation, m_frontRightLocation, m_backLeftLocation, m_backRightLocation
@@ -47,14 +47,28 @@ public class SwerveDrive extends SubsystemBase {
       
       
       SwerveModuleState[] moduleStates = m_kinematics.toSwerveModuleStates(speeds, angle);
-      moduleA.setSpeed(moduleStates[0].speedMetersPerSecond);
-      moduleB.setSpeed(moduleStates[1].speedMetersPerSecond);
-      moduleC.setSpeed(moduleStates[2].speedMetersPerSecond);
-      moduleD.setSpeed(moduleStates[3].speedMetersPerSecond);
+      
+      fLModule.setSpeed(moduleStates[0].speedMetersPerSecond);
+      fRModule.setSpeed(moduleStates[1].speedMetersPerSecond);
+      bLModule.setSpeed(moduleStates[2].speedMetersPerSecond);
+      bRModule.setSpeed(moduleStates[3].speedMetersPerSecond);
+      fLModule.setRotation(moduleStates[0].angle);
+      fRModule.setRotation(moduleStates[1].angle);
+      bLModule.setRotation(moduleStates[2].angle);
+      bRModule.setRotation(moduleStates[3].angle);
+      
+
+      
+      /*
+      moduleA.setSpeed(0);
+      moduleB.setSpeed(0);
+      moduleC.setSpeed(0);
+      moduleD.setSpeed(0);
       moduleA.setRotation(moduleStates[0].angle);
       moduleB.setRotation(moduleStates[1].angle);
       moduleC.setRotation(moduleStates[2].angle);
       moduleD.setRotation(moduleStates[3].angle);
+*/
 
       
       

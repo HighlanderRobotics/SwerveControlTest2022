@@ -15,7 +15,10 @@ import edu.wpi.first.math.kinematics.SwerveModuleState;
 public class SwerveModule {
     TalonFX rotation;
     TalonFX drive;
-
+    public SwerveModule(int driveID, int rotationID) {
+        rotation = new TalonFX(rotationID);
+        drive = new TalonFX(driveID);
+    }
     double ANGLECONSTANT = 2048/360.0;
     double SPEEDCONSTANT = 2533.109;
 
