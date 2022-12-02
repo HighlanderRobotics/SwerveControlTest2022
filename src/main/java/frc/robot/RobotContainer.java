@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -31,7 +32,14 @@ public class RobotContainer {
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     SwerveModule fLModule = new SwerveModule(2,1);
-    SmartDashboard.putData("Set module", new RunCommand(() -> fLModule.setSpeed(1)));
+    
+    Rotation2d angle = new Rotation2d(1,1);
+    SmartDashboard.putData("Set angle 45", new RunCommand(() -> fLModule.setRotation(angle)));
+    
+    SmartDashboard.putData("Set angle 60", new RunCommand(() -> fLModule.setRotation(new Rotation2d(1/2, 0.866))));
+
+    SmartDashboard.putData("Set angle 225", new RunCommand(() -> fLModule.setRotation(new Rotation2d(-1, -1))));
+
   }
   
 

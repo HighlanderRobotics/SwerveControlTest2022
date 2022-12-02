@@ -21,9 +21,14 @@ public class SwerveModule {
         drive.config_kP(0, 1);
         drive.config_kI(0, 0);
         drive.config_kD(0, 0);
+
+        
+        rotation.config_kP(0, 0.5);
+        rotation.config_kI(0, 0);
+        rotation.config_kD(0, 0);
     }
-    double ANGLECONSTANT = 2048/360.0;
-    double SPEEDCONSTANT = 2533.109;
+    double ANGLECONSTANT = 2048/360.0 * 12.8;
+    double SPEEDCONSTANT = 2533.109 * 8.16;
 
     public void setSpeed(double speedMeterPerSecond){
         drive.set(ControlMode.Velocity, speedMeterPerSecond*SPEEDCONSTANT);
@@ -33,6 +38,7 @@ public class SwerveModule {
     public void setRotation(Rotation2d angle){
         
         rotation.set(ControlMode.Position, angle.getDegrees() * ANGLECONSTANT);
+        System.out.println( angle.getDegrees() * ANGLECONSTANT);
         
         
     }
