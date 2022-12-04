@@ -18,7 +18,7 @@ public class SwerveModule {
     public SwerveModule(int driveID, int rotationID) {
         rotation = new TalonFX(rotationID);
         drive = new TalonFX(driveID);
-        drive.config_kP(0, 1);
+        drive.config_kP(0, 0.2);
         drive.config_kI(0, 0);
         drive.config_kD(0, 0);
 
@@ -32,7 +32,7 @@ public class SwerveModule {
 
     public void setSpeed(double speedMeterPerSecond){
         drive.set(ControlMode.Velocity, speedMeterPerSecond*SPEEDCONSTANT);
-        
+        System.out.println( speedMeterPerSecond * SPEEDCONSTANT);
     }
 
     public void setRotation(Rotation2d angle){

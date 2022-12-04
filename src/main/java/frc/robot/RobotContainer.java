@@ -40,6 +40,7 @@ public class RobotContainer {
 
     SmartDashboard.putData("Set angle 225", new RunCommand(() -> fLModule.setRotation(new Rotation2d(-1, -1))));
 
+    SmartDashboard.putData("Set speed to 0.2 m/s", new RunCommand(() -> fLModule.setSpeed(0.2)));
   }
   
 
