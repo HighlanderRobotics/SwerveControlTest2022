@@ -18,7 +18,7 @@ public class SwerveModule {
     public SwerveModule(int driveID, int rotationID) {
         rotation = new TalonFX(rotationID);
         drive = new TalonFX(driveID);
-        drive.config_kP(0, 0.2);
+        drive.config_kP(0, 0.05);
         drive.config_kI(0, 0);
         drive.config_kD(0, 0);
 
