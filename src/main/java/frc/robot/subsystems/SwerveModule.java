@@ -21,15 +21,17 @@ public class SwerveModule {
         drive.config_kP(0, 0.05);
         drive.config_kI(0, 0);
         drive.config_kD(0, 0);
-
+        
         
         rotation.config_kP(0, 0.5);
         rotation.config_kI(0, 0);
         rotation.config_kD(0, 0);
+        rotation.config_kF(0, FROTATIONVALUE);
     }
     double ANGLECONSTANT = 2048/360.0 * 12.8;
     double SPEEDCONSTANT = 2533.109 * 8.16;
-
+    double FROTATIONVALUE = 2048 * .75/14000;
+    //F-gain = (75% X 1023) / 7112 F-gain = 0.1079
     public void setSpeed(double speedMeterPerSecond){
         drive.set(ControlMode.Velocity, speedMeterPerSecond*SPEEDCONSTANT);
         System.out.println( speedMeterPerSecond * SPEEDCONSTANT);
